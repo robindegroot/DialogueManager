@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueStart : MonoBehaviour {
-    public GameObject rob;
+    public Animator animator;
 	void Start () {
-        rob.SetActive(false);
+        animator.SetBool("BOpen", false);
         Debug.Log("false");
 	}
 
-	void OnTriggerEnter (Collider other)
+	void OnTriggerStay(Collider other)
     { 
-            rob.SetActive(true);
-        Debug.Log("true");
+        if(other.gameObject.tag == "NPC")
+        {
+            animator.SetBool("BOpen" ,true);
+            Debug.Log("true");
+        }
+        else
+        {
+            animator.SetBool("BOpen", false);
+        }
     }
 }
